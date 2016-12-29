@@ -20,16 +20,20 @@ def import_dataset(filename):
         return data
 
 def main():
-    ds = import_dataset("sincTrain25.dt")
+    train_ds = import_dataset("sincTrain25.dt")
+    test_ds = import_dataset("sincValidate10.dt")
     # ds = import_dataset("sinc10.dt")
 
-    x = [[i[0]] for i in ds]
-    y = [[i[1]] for i in ds]
+    tr_x = [[i[0]] for i in train_ds]
+    tr_y = [[i[1]] for i in train_ds]
+
+    te_x = [[i[0]] for i in test_ds]
+    te_y = [[i[1]] for i in test_ds]
 
     # print(x)
     # print(y)
 
-    nn.nn(x, y)
+    nn.nn(tr_x, tr_y, te_x, te_y)
 
 
 if __name__ == '__main__':

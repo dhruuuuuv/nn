@@ -10,8 +10,9 @@ import plotly.plotly as py
 from random import random
 from random import seed
 
-LEARNING_RATE   = 0.5
-EPOCHS          = 20
+LEARNING_RATE   = -0.1
+EPOCHS          = 100
+NUM_H_NEURONS   = 2
 
 # initialise and return the neural network
 # with random numbers between (0, 1)
@@ -27,6 +28,20 @@ def init_network(num_inputs, num_hidden, num_outputs):
     network.append(output_layer)
 
     return network
+
+def test_network(network, inputs, expected):
+    nn_outputs = []
+    for row in inputs:
+        row_output = forward_propagate(network, row)
+        nn_outputs.append(row_output)
+    mse_val = mse(nn_outputs, expected)
+    return mse_val
+
+# calculate the mse given empirical / output vals and the expected vals
+def mse(output_vals, expected):
+    sum_error = 0
+    sum_error += sum([(math.fabs(expected[i][0] - output_vals[i][0]))**2 for i in range(len(expected))])
+    return sum_error
 
 # calculate the neuron activation for an input
 # nb. assumes bias is LAST weight in the list of weights (potential for adjusting)?
@@ -121,21 +136,36 @@ def update_weights(network):
 
 # online learning not batch learning as errors not accumulated across an epoch before updating - modify?
 # probably going to have to write this fn from scratch
-def train_network(network, input_vals, expected):
+def train_network(network, train_vals, train_expected, test_vals, test_expected):
+    train_mse_vals = []
+    test_mse_vals = []
+    # for each learning epoch
     for epoch in range(EPOCHS):
-        sum_error = 0
-        # print(len(expected))
+        # sum_error = 0
         output_vals = []
-        for row in input_vals:
+
+        # forward propagate and then back prop with the train values
+        for row in train_vals:
             outputs = forward_propagate(network, row)
             output_vals.append(outputs)
-            # expected = [0 for i in range(num_outputs)]
-            # expected[row[-1]] = 1
-            backward_propagate_error(network, expected)
-        # print(len(output_vals))
-        sum_error += sum([(expected[i][0] - output_vals[i][0])**2 for i in range(len(expected))])
+
+            backward_propagate_error(network, train_expected)
+
+        # calculate the mse on the training values
+        train_mse = mse(output_vals, train_expected)
+
+        # caluculate the mse on the test values
+        test_mse = test_network(network, test_vals, test_expected)
+
+        # update the weights in the network
         update_weights(network)
-        print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, LEARNING_RATE, sum_error))
+
+        train_mse_vals.append(train_mse)
+        test_mse_vals.append(test_mse)
+
+        print('>epoch=%d, lrate=%.3f, error training=%.3f, error validation=%.3f' % (epoch, LEARNING_RATE, train_mse, test_mse))
+
+    return (train_mse_vals, test_mse_vals)
 
 def numerically_estimated_pd(network, epsilon):
     w = []
@@ -148,17 +178,32 @@ def numerically_estimated_pd(network, epsilon):
 
     e = [0 for i in range(len(network))]
 
-def nn(input_vals, expected):
+def error_plot():
+    x = [i for i in range(100)]
+    print(x)
+
+        plt.plot(x_val, y_val)
+        plt.title('Plot of Learning epoch again the MSE for training and testing datasets')
+
+        plt.xlabel('learning epoch')
+        plt.ylabel('log MSE')
+
+        # plt.xlim((0, max(x_val)))
+        # plt.ylim((min(y_val)-0.25, 5.25))
+
+        plt.grid(True)
+        plt.show()
+
+def nn(train_vals, train_expected, test_vals, test_expected):
     seed(1)
 
-    network = init_network(1, 1, 1)
-    # for i, row in enumerate(input_vals):
-    #     forward_propagate(network, row)
-    #     backward_propagate_error(network, expected[i])
 
-    train_network(network, input_vals, expected)
+    network = init_network(1, NUM_H_NEURONS, 1)
 
-    for layer in network:
-        print(layer)
+    train_mse_vals, test_mse_vals = train_network(network, train_vals, train_expected, test_vals, test_expected)
+
+
+    # for layer in network:
+    #     print(layer)
 
     # numerically_estimated_pd(network, 0.1)
