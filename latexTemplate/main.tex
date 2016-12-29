@@ -1,0 +1,58 @@
+\documentclass{article}
+\input{Macros.tex}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{hhline}
+\geometry{a4paper}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\bibliography{ref.bib}
+\usepackage{comment}
+\usepackage{multirow,array,units}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{bvc981}
+\lhead{Dhruv Chauhan}
+
+\newenvironment{redmatrix}
+  {\left(\array{@{}rrr|ccc@{}}}
+  {\endarray\right)}
+\newenvironment{ropmatrix}
+  {\array{@{}c@{}}}
+  {\endarray}
+\newcommand\opone[2]{\xrightarrow{(#1)\times r_#2}}
+\newcommand\optwo[3]{\xrightarrow{r_#1{}+{} #2r_#3}}
+
+\begin{document}
+\title{Machine Learning Assignment 5}
+\author{Dhruv Chauhan}
+\maketitle
+
+\section{Neural Networks}
+\subsection{Neural network implementation}
+
+\newpage
+\section{The growth function}
+
+\subsection{}
+
+\subsection{}
+
+\subsection{}
+
+\subsection{}
+
+\subsection{}
+
+\newpage
+\section{VC-Dimension}
+
+\subsection{}
+
+\subsection{}
+
+\end{document}

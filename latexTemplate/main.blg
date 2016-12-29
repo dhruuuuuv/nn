@@ -1,0 +1,9 @@
+[0] Config.pm:324> INFO - This is Biber 2.1
+[0] Config.pm:327> INFO - Logfile is 'main.blg'
+[49] biber-darwin:276> INFO - === Sun Nov 27, 2016, 23:43:06
+[49] Biber.pm:333> INFO - Reading 'main.bcf'
+[181] Biber.pm:645> INFO - Found 0 citekeys in bib section 0
+[181] Utils.pm:146> WARN - The file 'main.bcf' does not contain any citations!
+[216] bbl.pm:505> INFO - Writing 'main.bbl' with encoding 'ascii'
+[216] bbl.pm:596> INFO - Output to main.bbl
+[216] Biber.pm:106> INFO - WARNINGS: 1
