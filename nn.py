@@ -11,8 +11,10 @@ from random import random
 from random import seed
 
 LEARNING_RATE   = -0.1
-EPOCHS          = 100
-NUM_H_NEURONS   = 2
+EPOCHS          = 60
+NUM_H_NEURONS   = 20
+
+EPSILON         = 10**(-6)
 
 # initialise and return the neural network
 # with random numbers between (0, 1)
@@ -40,7 +42,7 @@ def test_network(network, inputs, expected):
 # calculate the mse given empirical / output vals and the expected vals
 def mse(output_vals, expected):
     sum_error = 0
-    sum_error += sum([(math.fabs(expected[i][0] - output_vals[i][0]))**2 for i in range(len(expected))])
+    sum_error += sum([0.5*(math.fabs(expected[i][0] - output_vals[i][0]))**2 for i in range(len(expected))])
     return sum_error
 
 # calculate the neuron activation for an input
@@ -167,7 +169,7 @@ def train_network(network, train_vals, train_expected, test_vals, test_expected)
 
     return (train_mse_vals, test_mse_vals)
 
-def numerically_estimated_pd(network, epsilon):
+def numerically_estimated_pd(network):
     w = []
     outputs = []
     for neuron in network:
@@ -178,29 +180,81 @@ def numerically_estimated_pd(network, epsilon):
 
     e = [0 for i in range(len(network))]
 
-def error_plot():
-    x = [i for i in range(100)]
-    print(x)
+def error_plot(trainmse, testmse):
+    x = [i for i in range(EPOCHS)]
 
-        plt.plot(x_val, y_val)
-        plt.title('Plot of Learning epoch again the MSE for training and testing datasets')
+    # fig = plt.figure(121)
 
-        plt.xlabel('learning epoch')
-        plt.ylabel('log MSE')
 
-        # plt.xlim((0, max(x_val)))
-        # plt.ylim((min(y_val)-0.25, 5.25))
+    tr_y = [math.log(y) for y in trainmse]
+    te_y = [math.log(y) for y in testmse]
 
-        plt.grid(True)
-        plt.show()
+    plt.plot(x, tr_y, color='r', label='training mse')
+
+    plt.plot(x, te_y, color='g', label='testing mse')
+    plt.title('Plot of Learning epoch again the MSE for training and testing datasets')
+
+    plt.xlabel('learning epoch')
+    plt.ylabel('log MSE')
+    # plt.yscale('log')
+
+    plt.legend()
+
+    # plt.xlim((0, max(x_val)))
+    # plt.ylim((min(y_val)-0.25, 5.25))
+
+    plt.grid(True)
+    plt.show()
+
+def notzero(x):
+    if x != 0:
+        return x
+
+def sinc(x):
+    return (math.sin(x) / x)
+
+def compare_fn(network):
+    xs = [i/100 for i in range(-1000, 1005, 5)]
+    xs.remove(0.0)
+    sinc_vals = [sinc(x) for x in xs]
+
+    list_xs = [[x] for x in xs]
+    nn_vals = []
+
+    for row in list_xs:
+        row_output = forward_propagate(network, row)
+        nn_vals.append(row_output)
+
+    nn_vals = [nnv[0] for nnv in nn_vals]
+
+    plt.plot(xs, sinc_vals, color='b', label='sinc(x)')
+
+    plt.plot(xs, nn_vals, color='r', label='output from neural network')
+
+    plt.title('Plot of sinc(x) and trained neural network trying to model sinc(x)')
+
+    plt.xlabel('x')
+    plt.ylabel('y')
+    # plt.yscale('log')
+
+    plt.legend()
+    plt.grid(True)
+    plt.show()
 
 def nn(train_vals, train_expected, test_vals, test_expected):
     seed(1)
 
+    # LEARNING_RATE = lrate
 
     network = init_network(1, NUM_H_NEURONS, 1)
 
     train_mse_vals, test_mse_vals = train_network(network, train_vals, train_expected, test_vals, test_expected)
+
+    lrates = [-0.05, -0.1, 1, 5]
+
+    error_plot(train_mse_vals, test_mse_vals)
+
+    return (network, train_mse_vals, test_mse_vals)
 
 
     # for layer in network:

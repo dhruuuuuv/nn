@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.26)  23 DEC 2016 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.26)  29 DEC 2016 23:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -752,24 +752,57 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 Non-PDF special ignored!
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] (./main.aux)
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+
+ []
+
+[2] <figs/nn2.png, id=17, 578.16pt x 433.62pt>
+File: figs/nn2.png Graphic file (type png)
+ <use figs/nn2.png>
+Package pdftex.def Info: figs/nn2.png used on input line 51.
+(pdftex.def)             Requested size: 455.24408pt x 341.43124pt.
+
+Overfull \hbox (36.9904pt too wide) in paragraph at lines 51--52
+[][] 
+ []
+
+<figs/nn20.png, id=19, 578.16pt x 433.62pt>
+File: figs/nn20.png Graphic file (type png)
+ <use figs/nn20.png>
+Package pdftex.def Info: figs/nn20.png used on input line 57.
+(pdftex.def)             Requested size: 455.24408pt x 341.43124pt.
+
+Overfull \hbox (36.9904pt too wide) in paragraph at lines 57--58
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./figs/nn2.png>] [4 <./figs/nn20.png>] [5] (./main.aux)
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20187 strings out of 493089
- 385061 string characters out of 6134841
- 867294 words of memory out of 5000000
- 23296 multiletter control sequences out of 15000+600000
- 9814 words of font info for 39 fonts, out of 8000000 for 9000
+ 20219 strings out of 493089
+ 385451 string characters out of 6134841
+ 869310 words of memory out of 5000000
+ 23320 multiletter control sequences out of 15000+600000
+ 11831 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,54p,816b,668s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (3 pages, 46692 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on main.pdf (5 pages, 139961 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 48 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

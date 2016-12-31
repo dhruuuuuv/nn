@@ -30,10 +30,12 @@ def main():
     te_x = [[i[0]] for i in test_ds]
     te_y = [[i[1]] for i in test_ds]
 
-    # print(x)
-    # print(y)
 
-    nn.nn(tr_x, tr_y, te_x, te_y)
+    (network, train_mse_vals, test_mse_vals) = nn.nn(tr_x, tr_y, te_x, te_y)
+
+    nn.compare_fn(network)
+
+
 
 
 if __name__ == '__main__':
